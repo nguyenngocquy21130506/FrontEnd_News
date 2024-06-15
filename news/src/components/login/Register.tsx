@@ -2,20 +2,21 @@ import React, { useState } from 'react';
 import styles from './register.module.css';
 import {Link} from "react-router-dom";
 
-function Login() {
+function Register() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [confirmPassword, setConfirmPassword] = useState('');
 
-    const handleLogin = (e: React.FormEvent) => {
+    const handleRegister = (e: React.FormEvent) => {
         e.preventDefault();
-        // Xử lý đăng nhập
+        // Xử lý đăng ký
     };
 
     return (
-        <>
+        <div className={styles.bigContainer}>
             <div className={styles.authContainer}>
-                <h2>Đăng Nhập</h2>
-                <form onSubmit={handleLogin}>
+                <h2>Đăng Ký</h2>
+                <form onSubmit={handleRegister}>
                     <div className={styles.formGroup}>
                         <label>Email</label>
                         <input
@@ -34,15 +35,21 @@ function Login() {
                             required
                         />
                     </div>
-                    <button type="submit" className={styles.btn} style={{marginBottom : '10px'}}>Đăng Nhập</button>
-                    <label>Chưa có tài khoản ? </label><Link to={'http://localhost:3000/register'}> Đăng ký</Link>
+                    <div className={styles.formGroup}>
+                        <label>Xác Nhận Mật Khẩu</label>
+                        <input
+                            type="password"
+                            value={confirmPassword}
+                            onChange={(e) => setConfirmPassword(e.target.value)}
+                            required
+                        />
+                    </div>
+                    <button type="submit" className={styles.btn}>Đăng Ký</button>
                 </form>
             </div>
-            <div className={styles.imageContainer}>
-                <img src="../images/login.svg" className={styles.exampleImage} />
-            </div>
-        </>
+        </div>
+
     );
 }
 
-export default Login;
+export default Register;

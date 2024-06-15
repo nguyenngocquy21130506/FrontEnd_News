@@ -5,11 +5,11 @@ function Header() {
         <header className={styles.header}>
             <div className={styles.container}>
                 <div className={styles.logo}>
-                    <a href="/">Trang Tin Tức</a>
+                    <a href="/public">Trang Tin Tức</a>
                 </div>
                 <nav className={styles.nav}>
                     <ul>
-                        <li><a href="/">Trang Chủ</a></li>
+                        <li><a href="/public">Trang Chủ</a></li>
                         <li><a href="/news">Tin Tức</a></li>
                         <li><a href="/entertainment">Giải Trí</a></li>
                         <li><a href="/sport">Thể Thao</a></li>

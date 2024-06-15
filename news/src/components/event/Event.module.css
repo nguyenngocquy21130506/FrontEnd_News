@@ -1,0 +1,30 @@
+.feedContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.feedItem {
+    border: 1px solid #ccc;
+    padding: 20px;
+    border-radius: 5px;
+}
+
+.feedItem h2 {
+    margin-top: 0;
+}
+
+.feedItem img {
+    max-width: 100%;
+    height: auto;
+    margin-bottom: 10px;
+}
+
+.feedItem p {
+    margin: 10px 0;
+}
+
+.feedItem a {
+    color: blue;
+    text-decoration: underline;
+}

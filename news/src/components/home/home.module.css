@@ -140,6 +140,7 @@
     font-size: 32px;
     font-family: sans-serif;
     font-weight: 600;
+    line-height: 1.2;
 }
  .verticalPost__main-desc.font-noto, .verticalPost.topStory-1nd .verticalPost__main-desc.font-noto {
     font-family: notosans-regular;

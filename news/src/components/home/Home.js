@@ -135,7 +135,7 @@ function Home() {
                             <div className={styles.verticalPost__main} >
                                 <h3 data-id="2288775">
                                     <a href={item.url} title={item.content} data-utm-source="#vnn_source=trangchu&amp;vnn_medium=tieudiem2">
-                                        Bộ Chính trị: Cán bộ né tránh trách nhiệm sẽ bị tạm đình chỉ công tác
+                                        {item.content}
                                     </a>
                                 </h3>
                             </div>

@@ -15,7 +15,7 @@ const Event: React.FC = () => {
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        const rssUrl = 'https://vietnamnet.vn/tin-tuc-24h.rss';
+        const rssUrl = 'https://vietnamnet.vn/su-kien.rss';
         const fetchRSS = async () => {
             try {
                 const response = await axios.get(`https://api.allorigins.win/get?url=${encodeURIComponent(rssUrl)}`);

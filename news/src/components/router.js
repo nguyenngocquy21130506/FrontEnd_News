@@ -4,20 +4,22 @@ import Main from './main';
 import Test from './home/Test';
 import Login from "../Login";
 import Register from "../Register";
+import Category from './category/category';
 function RouterConfig() {
-    return (
-        <Router>
-        <Routes>
-          <Route path="/" element={<Main />}>
-            <Route index element={<Home />} />
-            
-          </Route>
-          <Route path='/test' element={<Test />} />
-          <Route path='/login' element={<Login />} />
-          <Route path='/register' element={<Register />} />
-        </Routes>
-      </Router>
-    );
-  }
-  
-  export default RouterConfig;
+  return (
+    <Router>
+      <Routes>
+        <Route path="/" element={<Main />}>
+          <Route index element={<Home />} />
+          <Route path='/:category' element={<Category />}></Route>
+          <Route path='/:category/:subcategory' element={<Category />}></Route>
+        </Route>
+        <Route path='/test' element={<Test />} />
+        <Route path='/login' element={<Login />} />
+        <Route path='/register' element={<Register />} />
+      </Routes>
+    </Router>
+  );
+}
+
+export default RouterConfig;

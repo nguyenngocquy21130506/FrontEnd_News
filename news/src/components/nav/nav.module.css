@@ -71,7 +71,7 @@
     font-family: sans-serif;
     font-weight: 600;
     font-size: 18px;
-    padding: 10px;
+    padding: 7px;
     display: inline-block;
     white-space: nowrap;
 }
@@ -103,4 +103,21 @@ ol, ul {
     animation: goToTop .2s ease-in;
     display: block;
     opacity: 1;
+}
+.wrapNav .mainNav__list-item .sub__menu li a:hover {
+    background-color: #2d67ad;
+    border: none;
+    color: #fff;
+}
+.wrapNav .mainNav__list-item .sub__menu li a {
+    color: #2a2a2a;
+    display: block;
+    font-family: sans-serif;
+    font-size: 16px;
+    padding: 10px 10px 10px 15px;
+}
+.wrapNav .mainNav__list-item a {
+    color: #2a2a2a;
+    display: inline-block;
+    white-space: nowrap;
 }

@@ -10,32 +10,36 @@ interface FeedItem {
     imageUrl?: string;
 }
 
-function Event() {
+const Event: React.FC = () => {
     const [feedItems, setFeedItems] = useState<FeedItem[]>([]);
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        const CORS_PROXY = "https://cors-anywhere.herokuapp.com/";
-        const rssUrl = 'https://vietnamnet.vn/rss/to-chuc-le-ky-niem-200-nam-ngay-sinh-danh-nhan-nguyen-dinh-chieu-2032244.rss';
-
+        const rssUrl = 'https://vietnamnet.vn/su-kien.rss';
         const fetchRSS = async () => {
             try {
-                const response = await axios.get(CORS_PROXY + rssUrl);
-                const $ = cheerio.load(response.data);
-                const items: FeedItem[] = [];
+                const response = await axios.get(`https://api.allorigins.win/get?url=${encodeURIComponent(rssUrl)}`);
+                const data = response.data.contents;
 
-                $('item').each((index, element) => {
-                    const title = $(element).find('title').text();
-                    const link = $(element).find('link').text();
-                    const description = $(element).find('description').text();
-                    const imageUrl = $(element).find('enclosure').attr('url');
+                // Parse RSS feed
+                const parser = new DOMParser();
+                const xml = parser.parseFromString(data, "application/xml");
 
-                    items.push({
+                const items = Array.from(xml.querySelectorAll("item")).map(item => {
+                    const title = item.querySelector("title")?.textContent || "";
+                    const link = item.querySelector("link")?.textContent || "";
+                    const description = item.querySelector("description")?.textContent || "";
+
+                    // Use cheerio to parse the description HTML and extract the image URL
+                    const $ = cheerio.load(description);
+                    const imageUrl = $('img').attr('src') || "";
+
+                    return {
                         title,
                         link,
                         description,
                         imageUrl
-                    });
+                    };
                 });
 
                 setFeedItems(items);
@@ -50,17 +54,22 @@ function Event() {
     }, []);
 
     return (
-        <div className="App">
-            <h1>Lễ kỷ niệm 200 năm ngày sinh danh nhân Nguyễn Đình Chiểu</h1>
+        <div className={styles.app}>
+            <h1 className={styles.title}>DANH SÁCH SỰ KIỆN</h1>
             {loading && <p>Loading...</p>}
             {!loading && (
                 <div className={styles.feedContainer}>
                     {feedItems.map((item, index) => (
-                        <div key={index} className={styles.feedItem}>
-                            <h2>{item.title}</h2>
-                            {/*{item.imageUrl && <img src={item.imageUrl} alt={item.title} />}*/}
-                            <p>{item.description}</p>
-                            <a href={item.link}>Read more</a>
+                        <div key={index} className={styles.verticalPost}>
+                            <div className={styles.verticalPost__avt}>
+                                <a href={item.link} title={item.title}>
+                                    {item.imageUrl &&
+                                        <img src={item.imageUrl} alt={item.title} className={styles.image}/>}
+                                    <h3 className={styles.verticalPost__mainTitle}>
+                                        {item.title}
+                                    </h3>
+                                </a>
+                            </div>
                         </div>
                     ))}
                 </div>

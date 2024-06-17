@@ -1,0 +1,88 @@
+.app {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+}
+
+.title {
+    font-size: 2rem;
+    margin-bottom: 20px;
+    color: #333;
+    text-align: center;
+}
+
+.feedContainer {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    justify-content: center;
+}
+
+.verticalPost {
+    position: relative;
+    width: 300px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px;
+    border: 1px solid #ddd;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    background: #fff;
+    overflow: hidden; /* Add this line to prevent overflow issues */
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Transition for hover effect */
+}
+
+.verticalPost:hover {
+    transform: translateY(-5px); /* Lift the card on hover */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Add a subtle shadow on hover */
+}
+
+.verticalPost__avt {
+    position: relative;
+    width: 100%;
+    height: 200px; /* Fixed height for the avatar area */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end; /* Align content to bottom */
+    overflow: hidden; /* Ensure content doesn't overflow */
+}
+
+.image {
+    width: 100%;
+    height: auto;
+    display: block;
+    transition: transform 0.3s ease, opacity 0.3s ease; /* Add transition for smooth hover effect */
+}
+
+.verticalPost__mainTitle {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(0, 0, 0, 0.6);
+    color: white;
+    padding: 10px;
+    font-size: 16px;
+    text-align: center;
+    transition: background 0.3s ease; /* Add transition for smooth hover effect */
+}
+
+.verticalPost__avt:hover .image {
+    transform: scale(1.1); /* Zoom in the image on hover */
+}
+
+.verticalPost__avt:hover .verticalPost__mainTitle {
+    background: rgba(0, 0, 0, 0.8); /* Darken the background on hover */
+}
+
+.description {
+    text-align: center;
+    padding: 10px;
+    font-size: 14px;
+    color: #555;
+    margin-top: 10px;
+    height: 100px; /* Fixed height for description */
+    overflow: hidden; /* Ensure content doesn't overflow */
+}

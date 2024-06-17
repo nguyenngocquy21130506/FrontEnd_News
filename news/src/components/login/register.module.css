@@ -1,6 +1,12 @@
-.authContainer {
-    max-width: 400px;
+.bigContainer {
     margin: 50px auto;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+}
+.authContainer {
+    min-width: 400px;
+    margin: 50px;
     padding: 20px;
     border: 1px solid #ddd;
     border-radius: 4px;
@@ -47,8 +53,15 @@
     background-color: #0056b3;
 }
 .imageContainer {
-    margin-top: 20px;
-    text-align: center;
+    width: 400px;
+    heiht: 400px;
+    margin: 50px;
+    padding: 20px;
+    border-radius: 4px;
+    background: url("/images/login.svg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
 }
 
 .exampleImage {

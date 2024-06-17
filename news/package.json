@@ -7,6 +7,7 @@
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
+    "@types/cheerio": "^0.22.35",
     "@types/jest": "^27.5.2",
     "@types/node": "^16.18.97",
     "@types/react": "^18.3.3",
@@ -25,7 +26,9 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
     "extends": [
@@ -47,7 +50,12 @@
   },
   "devDependencies": {
     "gh-pages": "^6.1.1"
+<<<<<<< HEAD
   }
   ,
   "homepage": "https://github.com/"
+=======
+  },
+  "homepage": "https://github.com/nguyenngocquy21130506/FrontEnd_News"
+>>>>>>> 200a780111223c8b23c01112f95d2858857440ef
 }

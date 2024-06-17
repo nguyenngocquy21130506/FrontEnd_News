@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import cheerio from 'cheerio';
-import styles from './Event.module.css'; // Đảm bảo bạn có file CSS hoặc thay đổi đường dẫn cho phù hợp
+import styles from './New.module.css';
 
 interface FeedItem {
     title: string;
     link: string;
     description: string;
     imageUrl?: string;
+    subDescription?: string;
 }
 
 const Event: React.FC = () => {
@@ -23,24 +24,28 @@ const Event: React.FC = () => {
 
                 // Parse RSS feed
                 const parser = new DOMParser();
-                const xml = parser.parseFromString(data, "application/xml");
+                const xml = parser.parseFromString(data, 'application/xml');
 
-                const items = Array.from(xml.querySelectorAll("item")).map(item => {
-                    const title = item.querySelector("title")?.textContent || "";
-                    const link = item.querySelector("link")?.textContent || "";
-                    const description = item.querySelector("description")?.textContent || "";
+                const items = Array.from(xml.querySelectorAll('item')).map(item => {
+                    const title = item.querySelector('title')?.textContent || '';
+                    const link = item.querySelector('link')?.textContent || '';
+                    const description = item.querySelector('description')?.textContent || '';
 
                     // Use cheerio to parse the description HTML and extract the image URL
                     const $ = cheerio.load(description);
-                    const imageUrl = $('img').attr('src') || "";
-
+                    const imageUrl = $('img').attr('src') || '';
+                    // Extract the text after <br> by splitting the HTML content
+                    const htmlContent = $.html();
+                    const subDescription = $('br').get(0).nextSibling.nodeValue.trim();
                     return {
                         title,
                         link,
                         description,
+                        subDescription,
                         imageUrl
                     };
                 });
+                console.log(items);
 
                 setFeedItems(items);
                 setLoading(false);
@@ -55,7 +60,7 @@ const Event: React.FC = () => {
 
     return (
         <div className={styles.app}>
-            <h1 className={styles.title}>DANH SÁCH SỰ KIỆN</h1>
+            <h1 className={styles.title}>TIN TỨC 24H</h1>
             {loading && <p>Loading...</p>}
             {!loading && (
                 <div className={styles.feedContainer}>
@@ -63,13 +68,13 @@ const Event: React.FC = () => {
                         <div key={index} className={styles.verticalPost}>
                             <div className={styles.verticalPost__avt}>
                                 <a href={item.link} title={item.title}>
-                                    {item.imageUrl &&
-                                        <img src={item.imageUrl} alt={item.title} className={styles.image}/>}
-                                    <h3 className={styles.verticalPost__mainTitle}>
-                                        {item.title}
-                                    </h3>
+                                    {item.imageUrl && (
+                                        <img src={item.imageUrl} alt={item.title} className={styles.image}/>
+                                    )}
+                                    <h3 className={styles.verticalPost__mainTitle}>{item.title}</h3>
                                 </a>
                             </div>
+                            <p className={styles.description}>{item.subDescription}</p>
                         </div>
                     ))}
                 </div>

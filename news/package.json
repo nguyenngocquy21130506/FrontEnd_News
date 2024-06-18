@@ -50,6 +50,12 @@
   },
   "devDependencies": {
     "gh-pages": "^6.1.1"
+<<<<<<< HEAD
+  }
+  ,
+  "homepage": "https://github.com/"
+=======
   },
   "homepage": "https://github.com/nguyenngocquy21130506/FrontEnd_News"
+>>>>>>> 200a780111223c8b23c01112f95d2858857440ef
 }

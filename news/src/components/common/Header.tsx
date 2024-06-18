@@ -1,6 +1,13 @@
+// Header.tsx
 import React from 'react';
-import styles from './header.module.css'
+import { FaFacebook, FaTwitter, FaInstagram } from 'react-icons/fa';
+import styles from './header.module.css';
+import {RootState} from "../reduxStore/Store";
+import {useSelector} from "react-redux";
+
 function Header() {
+    const email = useSelector((state: RootState) => state.user.email);
+
     return (
         <header className={styles.header}>
             <div className={styles.container}>
@@ -14,7 +21,11 @@ function Header() {
                         <li><a href="/entertainment">Giải Trí</a></li>
                         <li><a href="/sport">Thể Thao</a></li>
                         <li><a href="/contact">Liên Hệ</a></li>
-                        <li><a href="/login">Đăng nhập</a></li>
+                        {email ? (
+                            <li><a href="/profile">{email}</a></li>
+                        ) : (
+                            <li><a href="/login">Đăng nhập</a></li>
+                        )}
                     </ul>
                 </nav>
             </div>

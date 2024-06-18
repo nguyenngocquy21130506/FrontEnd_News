@@ -1,14 +1,20 @@
-import React, { useState } from 'react';
+import React, {useState} from 'react';
+import {useDispatch} from 'react-redux';
+import {Link, useNavigate} from 'react-router-dom';
+import axios from 'axios';
+import {loginSuccess} from '../reduxStore/UserSlice';
 import styles from './register.module.css';
-import {Link} from "react-router-dom";
 
 function Login() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
 
-    const handleLogin = (e: React.FormEvent) => {
+    const handleLogin = async (e: React.FormEvent) => {
         e.preventDefault();
-        // Xử lý đăng nhập
+        dispatch(loginSuccess({email, password}));
+        navigate('/'); // Hoặc trang bạn muốn chuyển tới sau khi đăng nhập
     };
 
     return (
@@ -37,10 +43,9 @@ function Login() {
                         />
                     </div>
                     <button type="submit" className={styles.btn} style={{marginBottom: '10px'}}>Đăng Nhập</button>
-                    <label>Chưa có tài khoản ? </label><Link to={'http://localhost:3000/register'}> Đăng ký</Link>
+                    <label>Chưa có tài khoản ? </label><Link to={'/register'}> Đăng ký</Link>
                 </form>
             </div>
-
         </div>
     );
 }

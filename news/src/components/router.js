@@ -7,6 +7,7 @@ import Login from "./login/Login";
 import Register from "./login/Register";
 import Event from "./event/Event";
 import New from "./new/New";
+import Search from "./search/Search";
 function RouterConfig() {
     return (
         <Router>
@@ -21,6 +22,7 @@ function RouterConfig() {
           <Route path='/register' element={<Register />} />
           <Route path='/event' element={<Event />} />
           <Route path='/new24h' element={<New />} />
+          <Route path='/search' element={<Search />} />
         </Routes>
       </Router>
     );

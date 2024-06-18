@@ -7,8 +7,8 @@ function Layout() {
   const facebookShareUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent('http://localhost:3000/')}`;
   return (
     <div>
-      <Header />
-      <Nav />
+      <a href={facebookShareUrl}>Share</a>
+      <Header/>
       <Outlet />
       <Footer />
     </div>

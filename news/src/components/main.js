@@ -1,6 +1,7 @@
 import { Outlet } from 'react-router-dom';
-import Header from "./common/Header";
-import Footer from "./common/Footer";
+import Header from "../Header";
+import Footer from "../Footer";
+import Nav from './nav/Nav';
 
 function Layout() {
   const facebookShareUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent('http://localhost:3000/')}`;
@@ -9,7 +10,7 @@ function Layout() {
       <a href={facebookShareUrl}>Share</a>
       <Header/>
       <Outlet />
-      <Footer/>
+      <Footer />
     </div>
   );
 }

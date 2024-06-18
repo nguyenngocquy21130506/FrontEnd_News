@@ -4,13 +4,54 @@
     border-top: 1px solid #ddd;
 }
 
-.container {
+.container, .preContainer {
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 20px;
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
+}
+/* header.module.css */
+.preContainer {
+    display: flex;
+    justify-content: center;
+    padding: 20px 0;
+}
+
+.category {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px; /* Khoảng cách giữa các ô */
+    list-style: none;
+    padding-bottom: 10px;
+    margin: 0;
+    border-bottom: solid black 1px;
+}
+
+.category li {
+    flex: 0 1 calc(20% - 10px); /* Mỗi ô chiếm 20% trừ khoảng cách */
+    box-sizing: border-box;
+    padding: 10px;
+    text-align: center;
+    border-radius: 4px; /* Bo góc ô tùy chọn */
+    transition: background-color 0.3s, transform 0.3s; /* Hiệu ứng hover */
+}
+
+.category li a {
+    text-decoration: none;
+    color: #333;
+    display: block;
+    height: 100%;
+}
+
+.category li:hover{
+    background-color: #666; /* Màu nền khi hover */
+    transform: translateY(-5px); /* Hiệu ứng di chuyển khi hover */
+    cursor: pointer;
+}
+.category li:hover a{
+    color: white;
 }
 
 .footerSection {
@@ -42,9 +83,9 @@
 
 .socialMedia a {
     text-decoration: none;
-    color: #007bff;
+    color: #666;
 }
 
 .socialMedia a:hover {
-    color: #0056b3;
+    color: #333;
 }

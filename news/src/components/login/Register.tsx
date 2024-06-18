@@ -1,15 +1,26 @@
-import React, { useState } from 'react';
+import React, {useState} from 'react';
+import {useDispatch} from 'react-redux';
+import {useNavigate} from 'react-router-dom';
+import axios from 'axios';
 import styles from './register.module.css';
-import {Link} from "react-router-dom";
+import {registerSuccess} from "../reduxStore/UserSlice";
 
 function Register() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
 
-    const handleRegister = (e: React.FormEvent) => {
+    const handleRegister = async (e: React.FormEvent) => {
         e.preventDefault();
-        // Xử lý đăng ký
+        if (password !== confirmPassword) {
+            alert("Mật khẩu không khớp!");
+            return;
+        }
+        // Dispatch action to store email and password in Redux store
+        dispatch(registerSuccess({email, password}));
+        navigate('/login');
     };
 
     return (
@@ -48,7 +59,6 @@ function Register() {
                 </form>
             </div>
         </div>
-
     );
 }
 

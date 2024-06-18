@@ -36,12 +36,13 @@ const Event: React.FC = () => {
                     const imageUrl = $('img').attr('src') || '';
                     // Extract the text after <br> by splitting the HTML content
                     const htmlContent = $.html();
-                    const subDescription = $('br').get(0).nextSibling.nodeValue.trim();
+                    const subDescription = $('br').get(0)?.nextSibling as Text | null;
+                    const trimmedNodeValue = subDescription?.nodeValue?.trim();
                     return {
                         title,
                         link,
                         description,
-                        subDescription,
+                        trimmedNodeValue,
                         imageUrl
                     };
                 });
@@ -69,7 +70,7 @@ const Event: React.FC = () => {
                             <div className={styles.verticalPost__avt}>
                                 <a href={item.link} title={item.title}>
                                     {item.imageUrl && (
-                                        <img src={item.imageUrl} alt={item.title} className={styles.image}/>
+                                        <img src={item.imageUrl} alt={item.title} className={styles.image} />
                                     )}
                                     <h3 className={styles.verticalPost__mainTitle}>{item.title}</h3>
                                 </a>

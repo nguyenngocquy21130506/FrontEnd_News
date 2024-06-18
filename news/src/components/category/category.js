@@ -7,9 +7,13 @@ import axios from 'axios';
 import fetchHTML from '../home/loadDOM';
 import { Cheerio } from 'cheerio';
 import useEffectOnce from '../useEffectOne';
+import { PaginatedItems } from './pagination';
 
 const cheerio = require('cheerio');
 function Category() {
+
+
+
     const { category, subcategory } = useParams();
     const [title, setTitle] = useState('');
     const [subtitle, setSubTitle] = useState([]);
@@ -18,6 +22,10 @@ function Category() {
     const [top2Story, setTop2Story] = useState([]);
     const [top3Story, setTop3Story] = useState([]);
     const [top15Story, setTop15Story] = useState([]);
+
+    const [pageList, setPageList] = useState([]);
+    const [prepage, setPrePage] = useState(null);
+    const [nextpage, setNextPage] = useState(null);
     useEffectOnce(() => {
         async function fetch() {
             let html;
@@ -58,16 +66,6 @@ function Category() {
                 url: data.find('.verticalPost__avt').find('a').attr('href'),
                 content: data.find('.verticalPost__main-desc').find('p').text()
             })
-            // await subtitles.each(function (index, element) {
-            //     const $subtitle = $(element);
-            //     setSubTitle((state) => [
-            //         ...state, {
-            //             url: $subtitle.find('a').attr('href'),
-            //             content: $subtitle.find('a').text(),
-            //             title: $subtitle.find('a').attr('title')
-            //         }
-            //     ])
-            // });
         }
         fetch()
     }, [subcategory]);
@@ -139,6 +137,38 @@ function Category() {
                         title: $post.find('.horizontalPost__avt').find('a').attr('title'),
                         url: $post.find('.horizontalPost__avt').find('a').attr('href'),
                         content: $post.find('.horizontalPost__main').find('.horizontalPost__main-desc').find('p').text()
+                    }
+                ])
+            });
+        }
+        fetch()
+    }, [subcategory]);
+    useEffectOnce(() => {
+        async function fetch() {
+            let html;
+            if (subcategory != undefined) {
+                html = await fetchHTML('https://vietnamnet.vn/' + category + "/" + subcategory);
+            }
+            if (subcategory == undefined) { html = await fetchHTML('https://vietnamnet.vn/' + category); }
+            const $ = cheerio.load(html);
+            const data = $('.pagination__list').find('li').not('.block');
+            const pre = $('.pagination__list').find('.pagination-prev');
+            const next = $('.pagination__list').find('.pagination-next');
+            setPrePage({
+                url: pre.find('a').attr('href'),
+            })
+            console.log(prepage)
+            setNextPage({
+                url: next.find('a').attr('href'),
+            })
+            setPageList([])
+            await data.each(function (index, element) {
+                const $page = $(element);
+                setPageList((state) => [
+                    ...state, {
+                        index: $page.find('a').text(),
+                        url: $page.find('a').attr('href'),
+                        isActive: $page.hasClass('active')
                     }
                 ])
             });
@@ -251,33 +281,55 @@ function Category() {
 
                     </div>
                     <div className={styles['topStory-15nd']}>
-                        {top15Story.map((item,index)=>(
-                             <div className={` ${styles.horizontalPost} ${styles['version-news']} ${'mb-20'}  `}  >
-                             <div className={` ${styles['horizontalPost__avt']} ${styles['avt-240']} `} >
-                                 <a href={item.url} title={item.title} data-utm-source="#vnn_source=bongdavietnam&amp;vnn_medium=listtin1">
-                                     <picture>
-                                         <source data-srcset={item.img} media="(max-width: 767px)" srcset={item.img} />
-                                         <source data-srcset={item.img} media="(max-width: 1023px)" srcset={item.img} />
-                                         <img src={item.img} class=" lazy-loaded" data-srcset={item.img} alt={item.title} srcset={item.img} />
-                                     </picture>
-                                 </a>
-                             </div>
-                             <div className={styles['horizontalPost__main']} >
-                                 <h3 className={` ${styles['horizontalPost__main-title']} ${styles['vnn-title']} ${styles['title-bold']} `} data-id="2291894" ispr="False">
-                                     <a href={item.url} title={item.title} data-utm-source="#vnn_source=bongdavietnam&amp;vnn_medium=listtin1" data-limit="">
-                                     {item.title}
-                                     </a>
-                                 </h3>
-                                 <div className={styles['horizontalPost__main-desc']} data-limit="">
-                                     <p>{item.content}</p>
-                                 </div>
-                             </div>
-                         </div>
+                        {top15Story.map((item, index) => (
+                            <div className={` ${styles.horizontalPost} ${styles['version-news']} ${'mb-20'}  `}  >
+                                <div className={` ${styles['horizontalPost__avt']} ${styles['avt-240']} `} >
+                                    <a href={item.url} title={item.title} data-utm-source="#vnn_source=bongdavietnam&amp;vnn_medium=listtin1">
+                                        <picture>
+                                            <source data-srcset={item.img} media="(max-width: 767px)" srcset={item.img} />
+                                            <source data-srcset={item.img} media="(max-width: 1023px)" srcset={item.img} />
+                                            <img src={item.img} class=" lazy-loaded" data-srcset={item.img} alt={item.title} srcset={item.img} />
+                                        </picture>
+                                    </a>
+                                </div>
+                                <div className={styles['horizontalPost__main']} >
+                                    <h3 className={` ${styles['horizontalPost__main-title']} ${styles['vnn-title']} ${styles['title-bold']} `} data-id="2291894" ispr="False">
+                                        <a href={item.url} title={item.title} data-utm-source="#vnn_source=bongdavietnam&amp;vnn_medium=listtin1" data-limit="">
+                                            {item.title}
+                                        </a>
+                                    </h3>
+                                    <div className={styles['horizontalPost__main-desc']} data-limit="">
+                                        <p>{item.content}</p>
+                                    </div>
+                                </div>
+                            </div>
                         ))}
-                       
-                    </div>
 
+                    </div>
                 </div>
+
+                <div className={styles.pagination} class="pagination ">
+                    <ul className={styles['pagination__list']} >
+                        {prepage  && (<li className={`${styles['pagination__list-item']} ${styles['pre-page']}`} >
+                            <a href={prepage.url}>
+                                <img src="https://static.vnncdn.net/v1/icon/icon-pagination.svg" alt="icon prev" />
+                            </a>
+                        </li>)}
+
+                        {pageList.map((item, index) => (
+                            <li className={`${styles['pagination__list-item']} ${item.isActive ? styles.active : ''}`} >
+                                <a href={item.url}>{item.index}</a>
+                            </li>
+                        ))}
+                        {nextpage && <li className={`${styles['pagination__list-item']}`}>
+                            <a href={nextpage.url}>
+                                <img src="https://static.vnncdn.net/v1/icon/icon-pagination.svg" alt="icon next" />
+                            </a>
+                        </li>}
+
+                    </ul>
+                </div>
+
             </div>
         </div>
     )

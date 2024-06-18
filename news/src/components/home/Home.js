@@ -84,7 +84,7 @@ function Home() {
                 {leftStory.map((item, index) => (
                     <div className={`${styles.horizontalPost} ` + " mb-20"}>
                         <div className={styles.horizontalPost__avt + " avt-140"} >
-                            <a href={item.detail} title={item.title}>
+                            <a href={"/detail"+item.detail} title={item.title}>
                                 <picture>
                                     <source srcset={item.source} />
                                     <img data-original={item.title} src={item.img} />
@@ -93,7 +93,7 @@ function Home() {
                         </div>
                         <div className={styles.horizontalPost__main}>
                             <h3 data-id="2287137" className={styles['horizontalPost__main-title']}>
-                                <a href={item.detail} title={item.title} data-utm-source="#vnn_source=trangchu&amp;vnn_medium=tieudiem4" data-limit="80">
+                                <a href={"/detail"+item.detail} title={item.title} data-utm-source="#vnn_source=trangchu&amp;vnn_medium=tieudiem4" data-limit="80">
                                     {item.desc}
                                 </a>
                             </h3>
@@ -104,7 +104,7 @@ function Home() {
             <div className={styles.sectionTopstory__center}>
                 {centerStory && <div class="group-reverse"><div data-pr="False" data-pin="False" class="verticalPost version-news sm:lineSeparates topStory">
                     <div className={styles.verticalPost__avt} >
-                        <a href={centerStory.url} title={centerStory.content} data-utm-source="#vnn_source=trangchu&amp;vnn_medium=tieudiem3">
+                        <a href={"/detail"+centerStory.url} title={centerStory.content} data-utm-source="#vnn_source=trangchu&amp;vnn_medium=tieudiem3">
                             <picture>
                                 <source srcset={centerStory.img} media="(max-width: 1023px)" />
                                 <img data-original={centerStory.content} src={centerStory.img} alt={centerStory.content} />
@@ -113,7 +113,7 @@ function Home() {
                     </div>
                     <div className={styles.verticalPost__main} >
                         <h2 className={styles['verticalPost__main-title'] + " vnn-title"} data-id="2287426">
-                            <a href={centerStory.url} title={centerStory.content} data-utm-source="#vnn_source=trangchu&amp;vnn_medium=tieudiem3">
+                            <a href={"/detail"+centerStory.url} title={centerStory.content} data-utm-source="#vnn_source=trangchu&amp;vnn_medium=tieudiem3">
                                 {centerStory.content}
                             </a>
                         </h2>
@@ -125,7 +125,7 @@ function Home() {
                     {top3Story.map((item, index) => (
                         <div data-pr="False" data-pin="False" className={styles.verticalPost + " version-news sm:lineSeparates"} >
                             <div className={styles.verticalPost__avt} >
-                                <a href={item.url} title={item.content} data-utm-source="#vnn_source=trangchu&amp;vnn_medium=tieudiem2">
+                                <a href={"/detail"+item.url} title={item.content} data-utm-source="#vnn_source=trangchu&amp;vnn_medium=tieudiem2">
                                     <picture>
                                         <source srcset={item.img} media="(max-width: 1023px)" />
                                         <img data-original={item.content} src={item.img} alt={item.content} />
@@ -134,7 +134,7 @@ function Home() {
                             </div>
                             <div className={styles.verticalPost__main} >
                                 <h3 data-id="2288775">
-                                    <a href={item.url} title={item.content} data-utm-source="#vnn_source=trangchu&amp;vnn_medium=tieudiem2">
+                                    <a href={"/detail"+item.url} title={item.content} data-utm-source="#vnn_source=trangchu&amp;vnn_medium=tieudiem2">
                                         {item.content}
                                     </a>
                                 </h3>

@@ -186,7 +186,7 @@ function Category() {
                             </a>
                         </div>
                         <div class="breadcrumb__heading">
-                            <h1><a href="/the-thao/euro" title="Euro">{title}</a></h1>
+                            <h1><a  title={title}>{title}</a></h1>
                             <div class="search-small">
                             </div>
                         </div>
@@ -195,7 +195,7 @@ function Category() {
                         <ul class="swiper-wrapper" >
                             {subtitle.map((item, index) => (
                                 <li class="swiper-slide">
-                                    <a href={item.url} title={item.title} data-utm-source="#vnn_source=thethaoeuro&amp;vnn_medium=menu-top">{item.content}</a>
+                                    <a href={"/detail"+item.url} title={item.title} data-utm-source="#vnn_source=thethaoeuro&amp;vnn_medium=menu-top">{item.content}</a>
                                 </li>
                             ))}
                         </ul>
@@ -209,7 +209,7 @@ function Category() {
                 <div className={styles['container__left']} >
                     {topStory && <div className={` ${styles.verticalPost} ${styles.verticalPost} ${styles['topStory-1nd']} ${styles['version-news']} ${'mb-20'} `} >
                         <div className={styles['verticalPost__avt']} >
-                            <a href={topStory.url} data-utm-source="#vnn_source=bongdavietnam&amp;vnn_medium=tiemdiem1">
+                            <a href={"/detail"+topStory.url} data-utm-source="#vnn_source=bongdavietnam&amp;vnn_medium=tiemdiem1">
                                 <picture>
                                     <source srcset={topStory.img} media="(max-width: 767px)" />
                                     <source srcset={topStory.img} media="(max-width: 1023px)" />
@@ -219,7 +219,7 @@ function Category() {
                         </div>
                         <div className={styles['verticalPost__main']}>
                             <h2 className={`${styles['verticalPost__main-title']} ${styles['vnn-title']}`} data-id="2292526" ispr="False">
-                                <a href={topStory.url} title={topStory.title} data-utm-source="#vnn_source=bongdavietnam&amp;vnn_medium=tiemdiem1" data-limit="">
+                                <a href={"/detail"+topStory.url} title={topStory.title} data-utm-source="#vnn_source=bongdavietnam&amp;vnn_medium=tiemdiem1" data-limit="">
                                     {topStory.title}
                                 </a>
                             </h2>
@@ -233,7 +233,7 @@ function Category() {
                             top2Story.map((item, index) => (
                                 <div class="verticalPost sm:lineSeparates version-news mb-20">
                                     <div class="verticalPost__avt ">
-                                        <a href={item.url} title={item.title} data-utm-source="#vnn_source=bongdavietnam&amp;vnn_medium=tiemdiem2">
+                                        <a href={"/detail"+item.url} title={item.title} data-utm-source="#vnn_source=bongdavietnam&amp;vnn_medium=tiemdiem2">
                                             <picture>
                                                 <source srcset={item.img} media="(max-width: 767px)" />
                                                 <source srcset={item.img} media="(max-width: 1023px)" />
@@ -245,7 +245,7 @@ function Category() {
                                     <div className={styles['verticalPost__main']}>
 
                                         <h3 className={styles['verticalPost__main-title']} data-id="2292167" ispr="False">
-                                            <a href={item.url} title={item.title} data-utm-source="#vnn_source=bongdavietnam&amp;vnn_medium=tiemdiem2" data-limit="">
+                                            <a href={"/detail"+item.url} title={item.title} data-utm-source="#vnn_source=bongdavietnam&amp;vnn_medium=tiemdiem2" data-limit="">
                                                 {item.content}
                                             </a>
                                         </h3>
@@ -259,7 +259,7 @@ function Category() {
                         {top3Story.map((item, index) => (
                             <div className={styles['verticalPost']}>
                                 <div class="verticalPost__avt ">
-                                    <a href={item.url} title={item.title} data-utm-source="#vnn_source=bongdavietnam&amp;vnn_medium=tiemdiem4">
+                                    <a href={"/detail"+item.url} title={item.title} data-utm-source="#vnn_source=bongdavietnam&amp;vnn_medium=tiemdiem4">
 
                                         <picture>
                                             <source srcset={item.img} media="(max-width: 767px)" />
@@ -271,7 +271,7 @@ function Category() {
                                 </div>
                                 <div className={styles['verticalPost__main']}>
                                     <h3 className={styles['verticalPost__main-title']} data-id="2292091" ispr="False">
-                                        <a href={item.url} title={item.title} data-utm-source="#vnn_source=bongdavietnam&amp;vnn_medium=tiemdiem4" data-limit="">
+                                        <a href={"/detail"+item.url} title={item.title} data-utm-source="#vnn_source=bongdavietnam&amp;vnn_medium=tiemdiem4" data-limit="">
                                             {item.content}
                                         </a>
                                     </h3>
@@ -284,7 +284,7 @@ function Category() {
                         {top15Story.map((item, index) => (
                             <div className={` ${styles.horizontalPost} ${styles['version-news']} ${'mb-20'}  `}  >
                                 <div className={` ${styles['horizontalPost__avt']} ${styles['avt-240']} `} >
-                                    <a href={item.url} title={item.title} data-utm-source="#vnn_source=bongdavietnam&amp;vnn_medium=listtin1">
+                                    <a href={"/detail"+item.url} title={item.title} data-utm-source="#vnn_source=bongdavietnam&amp;vnn_medium=listtin1">
                                         <picture>
                                             <source data-srcset={item.img} media="(max-width: 767px)" srcset={item.img} />
                                             <source data-srcset={item.img} media="(max-width: 1023px)" srcset={item.img} />
@@ -294,7 +294,7 @@ function Category() {
                                 </div>
                                 <div className={styles['horizontalPost__main']} >
                                     <h3 className={` ${styles['horizontalPost__main-title']} ${styles['vnn-title']} ${styles['title-bold']} `} data-id="2291894" ispr="False">
-                                        <a href={item.url} title={item.title} data-utm-source="#vnn_source=bongdavietnam&amp;vnn_medium=listtin1" data-limit="">
+                                        <a href={"/detail"+item.url} title={item.title} data-utm-source="#vnn_source=bongdavietnam&amp;vnn_medium=listtin1" data-limit="">
                                             {item.title}
                                         </a>
                                     </h3>
@@ -318,7 +318,7 @@ function Category() {
 
                         {pageList.map((item, index) => (
                             <li className={`${styles['pagination__list-item']} ${item.isActive ? styles.active : ''}`} >
-                                <a href={item.url}>{item.index}</a>
+                                <a href={"/detail"+item.url}>{item.index}</a>
                             </li>
                         ))}
                         {nextpage && <li className={`${styles['pagination__list-item']}`}>

@@ -49,6 +49,7 @@ a, abbr, acronym, address, applet, article, aside, audio, b, big, blockquote, bo
   margin: 0;
   padding: 0;
   color: #000;
+  list-style: none!important;
  
 }
 .mb-20 {

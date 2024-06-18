@@ -7,6 +7,7 @@ import Login from "./login/Login";
 import Register from "./login/Register";
 import Event from "./event/Event";
 import New from "./new/New";
+import Detail from './detail/detail';
 import Search from "./search/Search";
 function RouterConfig() {
     return (
@@ -16,6 +17,7 @@ function RouterConfig() {
             <Route index element={<Home />} />
             <Route path='/:category' element={<Category />}></Route>
             <Route path='/:category/:subcategory' element={<Category />}></Route>
+            <Route path='/detail/:link' element={<Detail />}></Route>
           </Route>
           <Route path='/test' element={<Test />} />
           <Route path='/login' element={<Login />} />

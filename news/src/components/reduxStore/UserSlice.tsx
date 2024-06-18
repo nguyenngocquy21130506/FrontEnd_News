@@ -1,34 +1,34 @@
-// redux/userSlice.ts
-import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { createSlice } from '@reduxjs/toolkit';
 
-interface UserState {
+// Định nghĩa kiểu dữ liệu cho người dùng
+interface User {
     email: string;
     password: string;
 }
 
-const initialState: UserState = {
-    email: '',
-    password: ''
+const initialState: {
+    users: User[];
+    currentUser: User | null;
+} = {
+    users: [],
+    currentUser: null,
 };
 
 const userSlice = createSlice({
     name: 'user',
     initialState,
     reducers: {
-        registerSuccess(state, action: PayloadAction<{ email: string; password: string }>) {
-            state.email = action.payload.email;
-            state.password = action.payload.password;
+        registerUser: (state, action) => {
+            state.users.push(action.payload);
         },
-        loginSuccess(state, action: PayloadAction<{ email: string; password: string }>) {
-            state.email = action.payload.email;
-            state.password = action.payload.password;
+        loginSuccess: (state, action) => {
+            state.currentUser = action.payload;
         },
-        logout(state) {
-            state.email = '';
-            state.password = '';
+        logoutSuccess: (state, action) => {
+            state.currentUser = null;
         },
     },
 });
 
-export const { registerSuccess, loginSuccess, logout } = userSlice.actions;
+export const { registerUser, loginSuccess } = userSlice.actions;
 export default userSlice.reducer;

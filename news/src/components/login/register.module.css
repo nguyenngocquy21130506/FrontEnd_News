@@ -58,7 +58,7 @@
     margin: 50px;
     padding: 20px;
     border-radius: 4px;
-    /* background: url("/images/login.svg"); */
+    background: url("/images/login.svg");
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;

@@ -11,7 +11,7 @@ interface FeedItem {
     subDescription?: string;
 }
 
-const Event: React.FC = () => {
+const New: React.FC = () => {
     const [feedItems, setFeedItems] = useState<FeedItem[]>([]);
     const [loading, setLoading] = useState(true);
 
@@ -84,4 +84,4 @@ const Event: React.FC = () => {
     );
 };
 
-export default Event;
+export default New;

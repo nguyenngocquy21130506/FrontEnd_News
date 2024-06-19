@@ -3,7 +3,7 @@ import {useDispatch} from 'react-redux';
 import {useNavigate} from 'react-router-dom';
 import axios from 'axios';
 import styles from './register.module.css';
-import {registerSuccess} from "../reduxStore/UserSlice";
+import {registerUser} from "../reduxStore/UserSlice";
 
 function Register() {
     const [email, setEmail] = useState('');
@@ -19,7 +19,7 @@ function Register() {
             return;
         }
         // Dispatch action to store email and password in Redux store
-        dispatch(registerSuccess({email, password}));
+        dispatch(registerUser({email, password}));
         navigate('/login');
     };
 

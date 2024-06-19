@@ -1,28 +1,42 @@
-import React, {useState} from 'react';
-import {useDispatch} from 'react-redux';
-import {Link, useNavigate} from 'react-router-dom';
-import axios from 'axios';
-import {loginSuccess} from '../reduxStore/UserSlice';
+import React, { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { Link, useNavigate } from 'react-router-dom';
+import { RootState } from '../reduxStore/Store'; // Giả sử bạn có RootState đã được định nghĩa
+import { loginSuccess } from '../reduxStore/UserSlice';
 import styles from './register.module.css';
 
+// Định nghĩa kiểu cho trạng thái người dùng trong Redux store
+interface User {
+    email: string;
+    password: string;
+}
+
 function Login() {
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
+    const [email, setEmail] = useState<string>('');
+    const [password, setPassword] = useState<string>('');
+    const [error, setError] = useState<string>('');
     const dispatch = useDispatch();
     const navigate = useNavigate();
+    const users = useSelector((state: RootState) => state.user.users); // Lấy danh sách người dùng từ Redux store
 
-    const handleLogin = async (e: React.FormEvent) => {
+    const handleLogin = (e: React.FormEvent) => {
         e.preventDefault();
-        dispatch(loginSuccess({email, password}));
-        navigate('/'); // Hoặc trang bạn muốn chuyển tới sau khi đăng nhập
+        const user = users.find((user: User) => user.email === email && user.password === password);
+
+        if (user) {
+            dispatch(loginSuccess(user)); // Lưu thông tin người dùng hiện tại vào Redux store
+            navigate('/'); // Chuyển hướng sau khi đăng nhập thành công
+        } else {
+            setError('Email hoặc mật khẩu không chính xác');
+        }
     };
 
     return (
         <div className={styles.bigContainer}>
-            <div className={styles.imageContainer}>
-            </div>
+            <div className={styles.imageContainer}></div>
             <div className={styles.authContainer}>
                 <h2>Đăng Nhập</h2>
+                {error && <p style={{ color: 'red' }}>{error}</p>}
                 <form onSubmit={handleLogin}>
                     <div className={styles.formGroup}>
                         <label>Email</label>
@@ -42,8 +56,11 @@ function Login() {
                             required
                         />
                     </div>
-                    <button type="submit" className={styles.btn} style={{marginBottom: '10px'}}>Đăng Nhập</button>
-                    <label>Chưa có tài khoản ? </label><Link to={'/register'}> Đăng ký</Link>
+                    <button type="submit" className={styles.btn} style={{ marginBottom: '10px' }}>
+                        Đăng Nhập
+                    </button>
+                    <label>Chưa có tài khoản? </label>
+                    <Link to={'/register'}> Đăng ký</Link>
                 </form>
             </div>
         </div>

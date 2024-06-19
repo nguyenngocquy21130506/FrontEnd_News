@@ -5,6 +5,7 @@
     -ms-flex-flow: wrap;
     flex-flow: wrap;
     padding: 20px 0 0;
+    margin: 0px 40px;
 }
 .sectionTopstory__left {
     -ms-flex: 1;

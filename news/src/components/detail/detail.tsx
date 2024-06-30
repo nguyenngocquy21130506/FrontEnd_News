@@ -1,9 +1,8 @@
-import React, { useEffect, useState } from 'react';
+import React, {useEffect, useState} from 'react';
 import axios from 'axios';
 import cheerio from 'cheerio';
 import styles from '../detail/Detail.module.css';
-import useEffectOnce from '../useEffectOne';
-import { useParams } from 'react-router-dom';
+import {useParams} from 'react-router-dom';
 
 // Định nghĩa interface cho chi tiết bài viết
 interface DetailContent {
@@ -23,7 +22,7 @@ interface FeedItem {
 }
 
 const Detail: React.FC = () => {
-    const { link } = useParams<{ link: string }>();
+    const {link} = useParams<{ link: string }>();
     const [detail, setDetail] = useState<DetailContent | null>(null);
     const [feedItems, setFeedItems] = useState<FeedItem[]>([]);
 
@@ -34,17 +33,23 @@ const Detail: React.FC = () => {
                 const html = response.data.contents;
                 const $ = cheerio.load(html);
 
+                // Sửa các lớp CSS trong HTML để sử dụng className thay vì class
+                $('[class]').each((index, element) => {
+                    const classes = $(element).attr('class')?.split(' ') || [];
+                    classes.forEach(className => {
+                        $(element).removeClass(className).addClass(className);
+                    });
+                });
+
                 // Extract content from the HTML as per your requirement
-                const title = $('.content-detail-title').text().trim(); // Adjust the selector as per the structure of the page
-                const content = $('#maincontent').html() || ''; // Adjust the selector as per the structure of the page
+                const title = $('.content-detail-title').text().trim();
+                const content = $('#maincontent').html() || '';
                 const dateUp = $('.bread-crumb-detail__time').text();
                 const demo = $('.content-detail-sapo').text();
                 const navElements = $('.bread-crumb-detail ul li').toArray();
-                const nav = navElements.map((li) => $(li).text().trim());
-                console.log('nav : ' + nav)
-                const navItems = nav.splice(1);  // Bỏ dấu `,` đầu tiên và tách chuỗi thành mảng
-                console.log('navItems : ' + navItems)
-                setDetail({ title, demo, content, dateUp, navItems });
+                const navItems = navElements.map((li) => $(li).text().trim());
+                const navItemsFiltered = navItems.slice(1);  // Loại bỏ phần tử đầu tiên
+                setDetail({title, demo, content, dateUp, navItems: navItemsFiltered});
 
                 const items = $('.horizontal-item').toArray().map(item => {
                     const itemTitle = $(item).find('.horizontalTitle').text().trim();
@@ -61,7 +66,6 @@ const Detail: React.FC = () => {
                         imageUrl: itemImageUrl
                     };
                 });
-                console.log('items.length :  '+ items.length)
                 setFeedItems(items);
             } catch (error) {
                 console.error('Error fetching the HTML:', error);
@@ -70,6 +74,22 @@ const Detail: React.FC = () => {
 
         fetch();
     }, [link]);
+    useEffect(() => {
+        if (detail?.content) {
+            const container = document.getElementById('maincontent');
+            if (container) {
+                const secretElements = container.querySelectorAll('[data-srcset]');
+                secretElements.forEach((element) => {
+                    element.setAttribute('srcset', element.getAttribute("data-srcset") || ''); // Thêm thuộc tính bạn cần vào đây
+                });
+                const reLink = container.querySelectorAll('h3 a');
+                reLink.forEach((element) => {
+                    let originalUrl = element.getAttribute("href") || ''; // Lấy đường dẫn gốc từ href
+                    element.setAttribute('href', "/detail"+originalUrl); // Cập nhật lại thuộc tính href của thẻ <a>
+                });
+            }
+        }
+    }, [detail]);
 
     return (
         <div className={styles.container}>
@@ -88,7 +108,8 @@ const Detail: React.FC = () => {
                     <h1 className={styles.contentDetailTitle}>{detail?.title || 'Loading...'}</h1>
                     <h2 className={styles.contentDetailSapo}>{detail?.demo}</h2>
                     <div className={styles.maincontent} id="maincontent"
-                         dangerouslySetInnerHTML={{__html: detail?.content || ''}}></div>
+                         dangerouslySetInnerHTML={{__html: detail?.content || ''}}>
+                    </div>
                 </div>
             </div>
             <div className="vnn-news-ai-suggest horizontal-box-wrapper sticky top-65 pb-15">
@@ -108,13 +129,13 @@ const Detail: React.FC = () => {
             </div>
             <div className={styles.comments}>
                 <span className={styles.title}>Bình luận</span><br/>
-                <textarea className={styles.inputComment} maxLength={500}/><br/>
+                <textarea className={styles.inputComment} maxLength={500} placeholder={"Bình luận của bạn..."}/><br/>
                 <button className={styles.btnComment}>
                     Bình luận
                 </button>
                 <span className="comment-bg emptyComment" style={{display: 'none'}}>
-                <img src="https://static.vnncdn.net/v1/icon/chat(1).svg"/>
-            </span>
+                    <img src="https://static.vnncdn.net/v1/icon/chat(1).svg" alt="comment icon"/>
+                </span>
                 <span className="comment-number vnn-comment-count-detail"></span>
             </div>
         </div>

@@ -19,12 +19,12 @@ function RouterConfig() {
                     <Route path='/:category' element={<Category/>}></Route>
                     <Route path='/:category/:subcategory' element={<Category/>}></Route>
                     <Route path="/detail/:link" element={<Detail/>}></Route>
+                    <Route path='/login' element={<Login/>}/>
+                    <Route path='/register' element={<Register/>}/>
+                    <Route path='/event' element={<Event/>}/>
+                    <Route path='/new24h' element={<New/>}/>
                 </Route>
                 <Route path='/test' element={<Test/>}/>
-                <Route path='/login' element={<Login/>}/>
-                <Route path='/register' element={<Register/>}/>
-                <Route path='/event' element={<Event/>}/>
-                <Route path='/new24h' element={<New/>}/>
                 <Route path='/search' element={<Search/>}/>
             </Routes>
         </Router>

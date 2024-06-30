@@ -8,6 +8,11 @@
     padding: 20px;
 }
 
+.container img{
+    max-width: 100%;
+    margin: 10px 0;
+}
+
 .subContainer {
     max-width: 760px;
     padding-top: 20px;
@@ -62,6 +67,72 @@
 
 .maincontent p {
     margin-top: 1em;
+    line-height: 1.75rem;
+    font-size: 1rem;
+    color: #505050;
+}
+.maincontent figure figcaption {
+    font-family: arial;
+    font-size: .9375rem;
+    font-style: italic;
+    line-height: 1.4;
+    margin-top: 10px;
+    text-align: center;
+    width: 100%;
+}
+
+.maincontent article a picture img{
+    max-width: 200px;
+    height: auto ;
+    -o-object-fit: cover;
+    object-fit: cover;
+}
+.maincontent article h3{
+    padding: 10px 0 ;
+    font-size: 17px;
+}
+.maincontent article{
+    background: #e3f6f2;
+    font-family: "arial";
+    font-size: 14px;
+    padding: 25px 20px;
+    position: relative;
+    margin-bottom: 10px;
+    margin-top: 10px;
+    gap: 20px;
+    display: flex;
+    line-height: 1.5rem;
+}
+
+.maincontent article span{
+    text-indent: 0px;
+    color: #277879;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #cecece;
+    font-size: 20px;
+    line-height: 30px;
+    font-weight: bold;
+    display: block;
+    margin-bottom: 25px;
+    position: relative;
+}
+
+.maincontent sapn.ck-cms-color-background-full.type-4 span.color-wiki__title {
+    text-indent: 0px !important;
+    color: #277879 !important;
+    padding-bottom: 15px !important;
+    border-bottom: 1px solid #cecece !important;
+    margin-bottom: 15px !important;
+}
+
+.maincontent figure.image:not(.image-style-align-left):not(.image-style-align-right):not(.ck-photo-collage):not(.ck-cms-football-ranking):not(.ck-cms-football-schedule):not(.ck-cms-football-result):not(.ck-cms-wiki-football-top-goal), .content-detail .maincontent table.image:not(.image-style-align-left):not(.image-style-align-right):not(.ck-photo-collage):not(.ck-cms-football-ranking):not(.ck-cms-football-schedule):not(.ck-cms-football-result):not(.ck-cms-wiki-football-top-goal) {
+     font-family: arial;
+     font-size: 14px;
+     font-style: italic;
+     margin-bottom: 20px;
+     margin-top: 20px;
+     text-align: center;
+     width: 100%;
 }
 
 .horizontalHeading {
@@ -106,4 +177,54 @@
     padding: 10px;
     border-radius: 20px;
     border:1px #ababab solid;
+}
+
+.maincontent .newsFeature__listInfomation {
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    cursor: pointer;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    height: calc(100% - 15px);
+    position: absolute;
+    right: 0;
+}
+.maincontent .newsFeature__listInfomation .newsFeature__listInfomation-boxItem .newsFeature__listInfomation-item .newsFeature__listInfomation-itemIntroduce .newsFeature__listInfomation-itemBoxIcon img {
+    border: 1px solid #838383;
+    border-radius: 50%;
+    -webkit-filter: grayscale(1);
+    filter: grayscale(1);
+    height: 25px;
+    padding: 5px;
+    width: 25px;
+}
+
+.noZoom{
+    border: 1px solid #838383;
+    border-radius: 50%;
+    -webkit-filter: grayscale(1);
+    filter: grayscale(1);
+    height: 25px;
+    padding: 5px;
+    width: 25px;
+}
+
+.maincontent .ck-cms-insert-neww-group {
+    clear: both;
+    border: 1px solid #c4c4c4;
+    font-family: "arial";
+    padding: 15px;
+    background: #f8f8f8;
+    margin: 15px 0px;
+}
+.container a{
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+    margin: 0;
+    padding: 0;
+    color: #2d67ad;
+    list-style: none !important;
 }

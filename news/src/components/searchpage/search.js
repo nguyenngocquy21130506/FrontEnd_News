@@ -8,6 +8,7 @@ import fetchHTML from '../home/loadDOM';
 import { Cheerio } from 'cheerio';
 import useEffectOnce from '../useEffectOne';
 import { useHistory, useLocation } from 'react-router-dom';
+import SpeechRecognitionComponent from '../voice/voice';
 const cheerio = require('cheerio');
 function useQuery() {
     return new URLSearchParams(useLocation().search);
@@ -91,12 +92,14 @@ function Search() {
                     <div className={styles['formSearch__head']} >
                         <h1>Kết quả tìm kiếm</h1>
                     </div>
+                    <SpeechRecognitionComponent setQuery={setQ}/>
                     <form className={styles['formSearch__main']} action='/searchPage/tim-kiem' >
                         <div className={styles.field} >
                             <input class="keyword" type="text" defaultValue={q} name="q" placeholder="Keyword tìm kiểm (VD: Văn Mai Hương)" />
                             <button type="submit">
                                 <span class="icon-search"></span>
                             </button>
+                           
                         </div>
                         <div className={styles.fields} >
                             <div className={styles.field}>

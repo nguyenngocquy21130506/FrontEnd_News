@@ -27,7 +27,7 @@ function Login() {
             dispatch(loginSuccess(user)); // Lưu thông tin người dùng hiện tại vào Redux store
             navigate('/'); // Chuyển hướng sau khi đăng nhập thành công
         } else {
-            setError('Email hoặc mật khẩu không chính xác');
+            setError('Email hoặc mật khẩu không chính xác !');
         }
     };
 
@@ -36,7 +36,6 @@ function Login() {
             <div className={styles.imageContainer}></div>
             <div className={styles.authContainer}>
                 <h2>Đăng Nhập</h2>
-                {error && <p style={{ color: 'red' }}>{error}</p>}
                 <form onSubmit={handleLogin}>
                     <div className={styles.formGroup}>
                         <label>Email</label>
@@ -56,6 +55,7 @@ function Login() {
                             required
                         />
                     </div>
+                    {error && <p style={{ color: 'red', fontWeight : 600, fontStyle : 'italic' }}>{error}</p>}
                     <button type="submit" className={styles.btn} style={{ marginBottom: '10px' }}>
                         Đăng Nhập
                     </button>

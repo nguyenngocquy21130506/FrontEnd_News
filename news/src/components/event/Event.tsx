@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import cheerio from 'cheerio';
-import styles from './Event.module.css'; // Đảm bảo bạn có file CSS hoặc thay đổi đường dẫn cho phù hợp
+import styles from './Event.module.css';
+import {Link} from "react-router-dom"; // Đảm bảo bạn có file CSS hoặc thay đổi đường dẫn cho phù hợp
 
 interface FeedItem {
     title: string;
@@ -53,6 +54,11 @@ const Event: React.FC = () => {
         fetchRSS();
     }, []);
 
+    const extractLinkPath = (url: string) => {
+        const parts = url.split('/');
+        return parts[parts.length - 1];
+    };
+
     return (
         <div className={styles.app}>
             <h1 className={styles.title}>DANH SÁCH SỰ KIỆN</h1>
@@ -62,13 +68,13 @@ const Event: React.FC = () => {
                     {feedItems.map((item, index) => (
                         <div key={index} className={styles.verticalPost}>
                             <div className={styles.verticalPost__avt}>
-                                <a href={item.link} title={item.title}>
+                                <Link to={`/detail/${extractLinkPath(item.link)}`} title={item.title}>
                                     {item.imageUrl &&
                                         <img src={item.imageUrl} alt={item.title} className={styles.image}/>}
                                     <h3 className={styles.verticalPost__mainTitle}>
                                         {item.title}
                                     </h3>
-                                </a>
+                                </Link>
                             </div>
                         </div>
                     ))}

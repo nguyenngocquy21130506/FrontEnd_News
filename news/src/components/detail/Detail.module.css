@@ -145,6 +145,10 @@
     text-transform: uppercase;
 }
 
+.noMess{
+    font-size: 25px;
+}
+
 .comments {
     display: block;
     margin-top: 20px;
@@ -177,6 +181,7 @@
     padding: 10px;
     border-radius: 20px;
     border:1px #ababab solid;
+    margin-bottom: 20px;
 }
 
 .maincontent .newsFeature__listInfomation {
@@ -227,4 +232,25 @@
     padding: 0;
     color: #2d67ad;
     list-style: none !important;
+}
+
+.commentItem {
+    margin-bottom: 10px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    background-color: #f9f9f9;
+}
+
+.commentUser {
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.commentContent {
+    margin-bottom: 5px;
+}
+
+.commentTime {
+    font-size: 12px;
+    color: #666;
 }

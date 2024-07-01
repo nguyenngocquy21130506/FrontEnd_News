@@ -13,7 +13,7 @@ function Header() {
         <header className={styles.header}>
             <div className={styles.container}>
                 <div className={styles.logo}>
-                    <Link to="/public">Trang Tin Tức</Link>
+                    <Link to="/">Trang Tin Tức</Link>
                 </div>
                 <nav className={styles.nav}>
                     <ul>

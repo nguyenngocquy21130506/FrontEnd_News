@@ -1,13 +1,48 @@
-.app {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+.container{
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 1140px;
+    display: grid;
+    grid-template-columns: 1fr 300px;
+    grid-template-rows: auto;
     padding: 20px;
+}
+.formTitle__filter {
+    margin-left: 130px;
+    max-width: 760px;
+    padding-top: 20px;
+    display: flex;
+}
+
+.formTitle__filterItem input{
+    width: 80%;
+    height: 50px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+    padding: 5px;
+    font-size: 15px;
+}
+.formTitle__filterItem img:hover{
+    cursor: pointer;
+    opacity: 0.8;
+}
+.formTitle__filterItem img{
+    position: absolute;
+    margin-left: -30px;
+    margin-top: 15px;
+    width: 20px;
+}
+.formTitle__filterItem{
+    width: 60%;
+}
+
+.subContainer {
+    max-width: 760px;
 }
 
 .title {
     font-size: 2rem;
-    margin-bottom: 20px;
+    margin: 20px 0;
     color: #333;
     text-align: center;
 }
@@ -17,56 +52,89 @@
     flex-wrap: wrap;
     gap: 16px;
     justify-content: center;
+    max-width: 760px;
 }
 
-.verticalPost {
-    position: relative;
-    width: 300px;
+.topStory{
+    width: 100%;
+    border: 1px solid #ddd;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    background: #fff;
+    overflow: hidden; /* Add this line to prevent overflow issues */
+    margin-right: 10px;
+}
+
+.horizontalPost {
+    width: 100%;
     display: flex;
-    flex-direction: column;
-    align-items: center;
     padding: 10px;
     border: 1px solid #ddd;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     background: #fff;
     overflow: hidden; /* Add this line to prevent overflow issues */
     transition: transform 0.3s ease, box-shadow 0.3s ease; /* Transition for hover effect */
+    line-height: 1.85rem;
+    border-radius: 12px;
 }
 
-.verticalPost:hover {
+.horizontalPost__mainTitle:hover,.verticalPost__mainTitle:hover{
+    cursor: pointer;
+    color: #2d67ad;
+}
+.horizontalPost__mainTitle{
+    font-size: 27px;
+    font-weight: 700;
+    margin-top: 10px;
+}
+
+.topDescription{
+    font-size: 16px;
+    color: #555;
+    margin-top: 10px;
+    line-height: 1.5rem;
+}
+
+
+.verticalPost {
+    width: 100%;
+    display: flex;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    background: #fff;
+    overflow: hidden; /* Add this line to prevent overflow issues */
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Transition for hover effect */
+    line-height: 1.5rem;
+    margin-top: 10px;
+    justify-content: space-around;
+}
+
+.verticalPost:hover ,.horizontalPost:hover {
     transform: translateY(-5px); /* Lift the card on hover */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Add a subtle shadow on hover */
 }
-
 .verticalPost__avt {
-    position: relative;
-    width: 100%;
-    height: 200px; /* Fixed height for the avatar area */
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: flex-end; /* Align content to bottom */
-    overflow: hidden; /* Ensure content doesn't overflow */
+    min-width: 150px;
+    height: 100px;
+    border: 1px solid #ddd;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    overflow: hidden; /* Add this line to prevent overflow issues */
+    margin-right: 10px;
 }
 
-.image {
+.verticalPost__avt img, .topStory img{
     width: 100%;
-    height: auto;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
     display: block;
     transition: transform 0.3s ease, opacity 0.3s ease; /* Add transition for smooth hover effect */
 }
 
 .verticalPost__mainTitle {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    background: rgba(0, 0, 0, 0.6);
-    color: white;
-    padding: 10px;
-    font-size: 16px;
-    text-align: center;
-    transition: background 0.3s ease; /* Add transition for smooth hover effect */
+    font-size: 22px;
+    font-weight: 700;
 }
 
 .verticalPost__avt:hover .image {
@@ -78,11 +146,8 @@
 }
 
 .description {
-    text-align: center;
-    padding: 10px;
     font-size: 14px;
     color: #555;
     margin-top: 10px;
-    height: 100px; /* Fixed height for description */
-    overflow: hidden; /* Ensure content doesn't overflow */
+    line-height: 1.3rem;
 }

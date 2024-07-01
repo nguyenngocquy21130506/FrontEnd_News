@@ -84,11 +84,11 @@
 // };
 //
 // export default New;
-import React, { useEffect, useState } from 'react';
+import React, {useEffect, useState} from 'react';
 import axios from 'axios';
 import cheerio from 'cheerio';
 import styles from './New.module.css';
-import { Link } from 'react-router-dom';
+import {Link} from 'react-router-dom';
 
 interface FeedItem {
     title: string;
@@ -151,24 +151,63 @@ const New: React.FC = () => {
     };
 
     return (
-        <div className={styles.app}>
+        <div>
             <h1 className={styles.title}>TIN TỨC 24H</h1>
+            {/*Search & Filter*/}
+            <div className={styles.formTitle__filter}>
+                <div className={styles.formTitle__filterItem}>
+                    <input id="formFilter-flatpickr" type="text"
+                           placeholder={"Tất cả chuyên mục"} autoComplete="off"/>
+                </div>
+                <div className={styles.formTitle__filterItem}>
+                    <input id="formFilter-flatpickr" type="text"
+                           placeholder={"Chọn ngày tháng"} autoComplete="off"/>
+                    <label className="iconCalendar" htmlFor="formFilter-flatpickr">
+                        <img width="30px" src="https://static.vnncdn.net/v1/icon/calendar.svg" alt="icon"/>
+                    </label>
+                </div>
+            </div>
             {loading && <p>Loading...</p>}
             {!loading && (
-                <div className={styles.feedContainer}>
-                    {feedItems.map((item, index) => (
-                        <div key={index} className={styles.verticalPost}>
-                            <div className={styles.verticalPost__avt}>
-                                <Link to={`/detail/${extractLinkPath(item.link)}`} title={item.title}>
-                                    {item.imageUrl && (
-                                        <img src={item.imageUrl} alt={item.title} className={styles.image} />
-                                    )}
-                                    <h3 className={styles.verticalPost__mainTitle}>{item.title}</h3>
-                                </Link>
+                <div className={styles.container}>
+                    <div className={styles.subContainer}>
+                        {feedItems.map((item, index) => (
+                            <div key={index}>
+                                {index === 0 ? (
+                                    <div className={styles.horizontalPost}>
+                                        <div className={styles.topStory}>
+                                            <Link to={`/detail/${extractLinkPath(item.link)}`} title={item.title}>
+                                                {item.imageUrl && (
+                                                    <img src={item.imageUrl} alt={item.title} className={styles.image}/>
+                                                )}
+                                            </Link>
+                                        </div>
+                                        <div className={styles.topContent}>
+                                            <Link to={`/detail/${extractLinkPath(item.link)}`} title={item.title}>
+                                                <h3 className={styles.horizontalPost__mainTitle}>{item.title}</h3>
+                                            </Link>
+                                            <p className={styles.topDescription}>{item.subDescription}</p></div>
+                                    </div>
+                                ) : (
+                                    <div className={styles.verticalPost}>
+                                        <div className={styles.verticalPost__avt}>
+                                            <Link to={`/detail/${extractLinkPath(item.link)}`} title={item.title}>
+                                                {item.imageUrl && (
+                                                    <img src={item.imageUrl} alt={item.title} className={styles.image}/>
+                                                )}
+                                            </Link>
+                                        </div>
+                                        <div>
+                                            <Link to={`/detail/${extractLinkPath(item.link)}`} title={item.title}>
+                                                <h3 className={styles.verticalPost__mainTitle}>{item.title}</h3>
+                                            </Link>
+                                            <p className={styles.description}>{item.subDescription}</p>
+                                        </div>
+                                    </div>
+                                )}
                             </div>
-                            <p className={styles.description}>{item.subDescription}</p>
-                        </div>
-                    ))}
+                        ))}
+                    </div>
                 </div>
             )}
         </div>

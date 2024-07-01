@@ -195,7 +195,7 @@ function Category() {
                         <ul class="swiper-wrapper" >
                             {subtitle.map((item, index) => (
                                 <li class="swiper-slide">
-                                    <a href={"/detail"+item.url} title={item.title} data-utm-source="#vnn_source=thethaoeuro&amp;vnn_medium=menu-top">{item.content}</a>
+                                    <a href={item.url} title={item.title} data-utm-source="#vnn_source=thethaoeuro&amp;vnn_medium=menu-top">{item.content}</a>
                                 </li>
                             ))}
                         </ul>
@@ -308,7 +308,7 @@ function Category() {
                     </div>
                 </div>
 
-                <div className={styles.pagination} class="pagination ">
+                <div className={styles.pagination} >
                     <ul className={styles['pagination__list']} >
                         {prepage  && (<li className={`${styles['pagination__list-item']} ${styles['pre-page']}`} >
                             <a href={prepage.url}>
@@ -318,7 +318,7 @@ function Category() {
 
                         {pageList.map((item, index) => (
                             <li className={`${styles['pagination__list-item']} ${item.isActive ? styles.active : ''}`} >
-                                <a href={"/detail"+item.url}>{item.index}</a>
+                                <a href={item.url}>{item.index}</a>
                             </li>
                         ))}
                         {nextpage && <li className={`${styles['pagination__list-item']}`}>
